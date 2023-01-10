@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="container text-center mt20">
+    <h1>Student MarkSheet</h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <input class="form-control my-2" type="text" [(ngModel)]="term" placeholder="serch heare">
+      </div>
+    </div>
+
+    <table class="table table-bordered border-dark border-5 text-center">
+      <thead>
+        <tr>
+          <!-- <th scope="col">Sr no</th> -->
+          <th scope="col"> Roll No</th>
+          <th scope="col">Student name</th>
+          <th scope="col">mats</th>
+          <th scope="col">Science</th>
+          <th scope="col">English</th>
+          <th scope="col">Hindi</th>
+          <th scope="col">Marathi</th>
+          <th scope="col">Total</th>
+          <th scope="col">Percentage</th>
+          <th scope="col">Grade</th>
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container></ng-container>
+        <tr *ngFor="let m of marks |paginate:{
+          itemsPerPage:5,
+          currentPage:p,
+          totalItems:marks.length
+        } | filter:term; let i=index">
+          <td> {{i+1}}</td>
+          <!-- <td>{{m.roll}}</td> -->
+          <td>{{m.Studentname | lowercase}}</td>
+          <td>{{m.maths}}</td>
+          <td>{{m.science}}</td>
+          <td>{{m.english}}</td>
+          <td>{{m.hindi}}</td>
+          <td>{{m.marathi}}</td>
+          <td>{{m.total}}</td>
+          <td>{{m.parcentage}}%</td>
+          <ng-container *ngIf="m.parcentage < 35">
+            <td style="color: red;"> Fail</td>
+          </ng-container>
+          <ng-container *ngIf="m.parcentage > 35 && m.parcentage < 60">
+            <td style="color: orange;"> Pass</td>
+          </ng-container>
+           <ng-container *ngIf="m.parcentage > 60  && m.parcentage < 75">
+            <td style="color:yellow;">Second Class</td>
+          </ng-container>
+          <ng-container *ngIf="m.parcentage >75 ">
+            <td style="color: green;">first Class</td>
+          </ng-container>
+          <td>
+            <button (click)="onEdit(i)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              class="btn btn-info btn-sm">Edit</button>
+            <button (click)="deleteMark(m)" type="button" class="btn btn-danger mt20 ml20 btn-sm mx-2">Delete</button>
+            <button (click)="printMarksheet()" class="btn btn-primary mt20 ml20 btn-sm mx-2">Print</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+
+    <div class="container text-center">
+      <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info" type="button"
+        class="btn btn-success">AddAnotherStudent</button>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Student Marks</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Student Name</label>
+              <input type="text" formControlName="Studentname" class="form-control" id="exampleFormControlInput1"
+                placeholder="enter student name">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Maths</label>
+              <input type="number" formControlName="maths" class="form-control" id="exampleFormControlInput1"
+                placeholder="Maths mark">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Science</label>
+              <input type="number" formControlName="science" class="form-control" id="exampleFormControlInput1"
+                placeholder="science mark">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">English</label>
+              <input type="number" formControlName="english" class="form-control" id="exampleFormControlInput1"
+                placeholder="English">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Hindi</label>
+              <input type="number" formControlName="hindi" class="form-control" id="exampleFormControlInput1"
+                placeholder="enter Hindi Mark">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Marathi</label>
+              <input type="number" formControlName="marathi" class="form-control" id="exampleFormControlInput1"
+                placeholder="enter marathi">
+            </div>
+          </form>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" *ngIf="id==undefined"  (click)="postMark()" class="btn btn-primary">Submit</button>
+        <button type="button" *ngIf="id"  (click)="updateMark()"class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

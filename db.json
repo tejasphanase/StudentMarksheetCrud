@@ -1,0 +1,28 @@
+{
+  "student": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "roll":1,
+      "Studentname":"tejas",
+      "maths":50,
+      "science":50,
+      "english":50,
+      "hindi":50,
+      "marathi":50
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

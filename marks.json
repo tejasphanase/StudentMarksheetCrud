@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "roll": "",
+      "Studentname": "rahul athpad",
+      "maths": 40,
+      "science": 40,
+      "english": 40,
+      "hindi": 40,
+      "marathi": 40,
+      "id": 4
+    },
+    {
+      "roll": "",
+      "Studentname": "tejas phanase",
+      "maths": 66,
+      "science": 88,
+      "english": 66,
+      "hindi": 88,
+      "marathi": 36,
+      "id": 5
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "roll": "1",
+      "Studentname": "tejas",
+      "maths": "100",
+      "science": "",
+      "english": "100",
+      "hindi": "100",
+      "marathi": "100"
+    },
+    {
+      "id": 3,
+      "roll": "2",
+      "Studentname": "suyog",
+      "maths": "100",
+      "science": "",
+      "english": "100",
+      "hindi": "100",
+      "marathi": "100"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
